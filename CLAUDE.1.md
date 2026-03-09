@@ -66,7 +66,7 @@ Multi-layered approach:
    - Tailwind CSS v4 using `@theme` directive
    - Custom color palette (purple/pink accents on dark background)
    - Typography base styles (h1–h4, body)
-   - Utility classes (`.page-content`, `.center-content`, `.form-title`, `.btn`)
+   - Utility classes (`.page-content`, `.center-content`, `.form-title`)
 
 2. **Component Styles** (e.g., `components/Navbar/Navbar.module.css`)
    - CSS Modules for component-scoped styles
@@ -94,26 +94,9 @@ components/
 - Globals enabled (no need to import `describe`, `it`, `expect`)
 - Setup file: `vitest.setup.ts` imports `@testing-library/jest-dom`
 
-## Workflows
-
-### Feature Development
-
-1. **Spec** (`/spec <idea>`) — Creates a feature spec in `_specs/` and a new branch `claude/feature/<slug>`
-2. **Plan** — Enter plan mode to create an implementation plan in `_plans/`
-3. **Implement** — Build the feature following the plan
-4. **Component** (`/component <description>`) — TDD workflow: write tests first, then create component, then run tests
-
-### Commit Messages
-
-Use `/commit` to analyze staged changes and create a commit message. Format: `<emoji> <type>: <description>`. Types: ✨ feat, 🐛 fix, 🔨 refactor, 📝 docs, 🎨 style, ✅ test, ⚡ perf.
-
-### Automated Formatting
-
-A PostToolUse hook runs Prettier on `.ts`/`.tsx` files after every Write or Edit. Prettier will add semicolons — this is expected behavior from the hook despite the coding preference below.
-
 ## Additional Coding Preferences
 
-- Do NOT use semicolons for JavaScript or TypeScript code (Prettier hook will add them automatically).
+- Do NOT use semicolons for JavaScript or TypeScript code.
 - Do NOT apply Tailwind classes directly in component templates unless essential or just 1 at most. If an element needs more than a single Tailwind class, combine them into a custom class using the `@apply` directive.
 - Use minimal project dependencies where possible.
 - Use the `git switch -c` command to switch to new branches, not `git checkout`.
