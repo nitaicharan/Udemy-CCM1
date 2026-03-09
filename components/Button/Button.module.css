@@ -1,0 +1,5 @@
+@reference "../../app/globals.css";
+
+.button:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}

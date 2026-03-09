@@ -1,0 +1,21 @@
+@reference "../../app/globals.css";
+
+.field {
+  @apply flex flex-col gap-1;
+}
+
+.field label {
+  @apply text-sm font-medium;
+  color: var(--color-body);
+}
+
+.input {
+  @apply w-full rounded px-3 py-2 focus:outline-none;
+  background: var(--color-lighter);
+  color: var(--color-heading);
+  border: 1px solid transparent;
+}
+
+.input:focus {
+  border-color: var(--color-primary);
+}
