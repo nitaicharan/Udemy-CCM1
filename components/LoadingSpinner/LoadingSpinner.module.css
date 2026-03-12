@@ -1,0 +1,20 @@
+@reference "../../app/globals.css";
+
+.overlay {
+  @apply fixed inset-0 flex items-center justify-center bg-dark;
+  z-index: 9999;
+}
+
+.icon {
+  color: var(--color-primary);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
