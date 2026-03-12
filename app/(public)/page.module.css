@@ -1,0 +1,211 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  overflow: hidden;
+}
+
+/* Subtle grid lines */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(194, 122, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(194, 122, 255, 0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+  pointer-events: none;
+}
+
+/* Ambient radial glow */
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 500px;
+  background: radial-gradient(
+    ellipse,
+    rgba(194, 122, 255, 0.1) 0%,
+    rgba(251, 100, 182, 0.05) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+/* Status badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(194, 122, 255, 0.08);
+  border: 1px solid rgba(194, 122, 255, 0.2);
+  color: var(--color-primary);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  width: fit-content;
+  animation: fadeUp 0.5s ease 0s both;
+}
+
+.badgeDot {
+  width: 6px;
+  height: 6px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+/* Title */
+.title {
+  font-size: clamp(3.25rem, 9vw, 5.75rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: var(--color-heading);
+  animation: fadeUp 0.5s ease 0.1s both;
+}
+
+.title :global(svg.logo) {
+  color: var(--color-primary);
+  width: 0.82em;
+  height: 0.82em;
+  vertical-align: -0.08em;
+}
+
+/* Tagline */
+.tagline {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--color-secondary);
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  animation: fadeUp 0.5s ease 0.2s both;
+}
+
+.tagline::before {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--color-secondary);
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+/* Description */
+.description {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--color-body);
+  max-width: 520px;
+  animation: fadeUp 0.5s ease 0.3s both;
+}
+
+/* CTA area */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  animation: fadeUp 0.5s ease 0.4s both;
+}
+
+.registerBtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: var(--color-primary);
+  color: #030712;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: opacity 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 0 0 rgba(194, 122, 255, 0.4);
+}
+
+.registerBtn:hover {
+  opacity: 0.9;
+  box-shadow: 0 0 24px rgba(194, 122, 255, 0.35);
+}
+
+.loginLink {
+  font-size: 0.875rem;
+  color: var(--color-body);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.loginLink:hover {
+  color: var(--color-heading);
+}
+
+/* Decorative corner marks */
+.corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  opacity: 0.25;
+  animation: fadeUp 0.5s ease 0.5s both;
+}
+
+.cornerTL {
+  top: 0;
+  left: 0;
+  border-top: 1px solid var(--color-primary);
+  border-left: 1px solid var(--color-primary);
+}
+
+.cornerBR {
+  bottom: 0;
+  right: 0;
+  border-bottom: 1px solid var(--color-primary);
+  border-right: 1px solid var(--color-primary);
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.75);
+  }
+}
