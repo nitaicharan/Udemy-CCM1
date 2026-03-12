@@ -23,7 +23,7 @@ export interface CreateHeistInput {
   createdByCodename: string;
   assignedTo: string;
   assignedToCodename: string;
-  deadline: FieldValue;
+  deadline: Date;
   finalStatus: null;
   createdAt: FieldValue;
 }

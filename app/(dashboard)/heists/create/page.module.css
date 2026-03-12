@@ -1,0 +1,47 @@
+@reference "../../../../app/globals.css";
+
+.form {
+  @apply flex flex-col gap-6 max-w-md mx-auto;
+}
+
+.inputGroup {
+  @apply flex flex-col gap-1;
+}
+
+.label {
+  @apply text-sm font-medium;
+  color: var(--color-body);
+}
+
+.textarea {
+  @apply w-full rounded px-3 py-2 focus:outline-none resize-none;
+  background: var(--color-lighter);
+  color: var(--color-heading);
+  border: 1px solid transparent;
+  min-height: 100px;
+}
+
+.textarea:focus {
+  border-color: var(--color-primary);
+}
+
+.select {
+  @apply w-full rounded px-3 py-2 focus:outline-none;
+  background: var(--color-lighter);
+  color: var(--color-heading);
+  border: 1px solid transparent;
+}
+
+.select:focus {
+  border-color: var(--color-primary);
+}
+
+.error {
+  @apply bg-error/10 text-error text-sm p-3 rounded;
+}
+
+.emptyState {
+  @apply text-sm p-3 rounded text-center;
+  color: var(--color-body);
+  background: var(--color-lighter);
+}
