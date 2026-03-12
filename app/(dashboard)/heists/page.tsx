@@ -1,29 +1,41 @@
 "use client";
 
 import { useHeists } from "@/lib/hooks";
+import HeistCard, { HeistCardSkeleton } from "@/components/HeistCard";
+import type { Heist } from "@/types/firestore/heist";
+import styles from "./page.module.css";
 
-function HeistSection({
-  title,
+function HeistGrid({
   loading,
   error,
   heists,
   emptyMessage,
 }: {
-  title: string;
   loading: boolean;
   error: string | null;
-  heists: Array<{ id: string; title: string }>;
+  heists: Heist[];
   emptyMessage: string;
 }) {
+  if (loading) {
+    return (
+      <div className={styles.grid}>
+        <HeistCardSkeleton />
+        <HeistCardSkeleton />
+        <HeistCardSkeleton />
+      </div>
+    );
+  }
+  if (error) {
+    return <p className={styles.errorMessage}>{error}</p>;
+  }
+  if (heists.length === 0) {
+    return <p className={styles.emptyState}>{emptyMessage}</p>;
+  }
   return (
-    <div>
-      <h2>{title}</h2>
-      {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
-      {!loading && !error && heists.length === 0 && <p>{emptyMessage}</p>}
-      {!loading &&
-        !error &&
-        heists.map((heist) => <div key={heist.id}>{heist.title}</div>)}
+    <div className={styles.grid}>
+      {heists.map((heist) => (
+        <HeistCard key={heist.id} heist={heist} />
+      ))}
     </div>
   );
 }
@@ -47,33 +59,37 @@ export default function HeistsPage() {
 
   return (
     <div className="page-content">
-      <div className="active-heists">
-        <HeistSection
-          title="Your Active Heists"
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>Your Active Heists</h2>
+        <HeistGrid
           loading={activeLoading}
           error={activeError}
           heists={activeHeists}
           emptyMessage="No active heists assigned to you"
         />
-      </div>
-      <div className="assigned-heists">
-        <HeistSection
-          title="Heists You've Assigned"
+      </section>
+
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>Heists You&apos;ve Assigned</h2>
+        <HeistGrid
           loading={assignedLoading}
           error={assignedError}
           heists={assignedHeists}
-          emptyMessage="You haven't assigned any heists yet"
+          emptyMessage="No heists you've assigned"
         />
-      </div>
-      <div className="expired-heists">
-        <HeistSection
-          title="All Expired Heists"
-          loading={expiredLoading}
-          error={expiredError}
-          heists={expiredHeists}
-          emptyMessage="No expired heists"
-        />
-      </div>
+      </section>
+
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>All Expired Heists</h2>
+        {expiredLoading && <p className={styles.emptyState}>Loading...</p>}
+        {expiredError && <p className={styles.errorMessage}>{expiredError}</p>}
+        {!expiredLoading && !expiredError && expiredHeists.length === 0 && (
+          <p className={styles.emptyState}>No expired heists</p>
+        )}
+        {!expiredLoading &&
+          !expiredError &&
+          expiredHeists.map((heist) => <div key={heist.id}>{heist.title}</div>)}
+      </section>
     </div>
   );
 }

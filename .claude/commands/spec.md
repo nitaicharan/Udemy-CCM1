@@ -1,6 +1,6 @@
 ---
 description: Create a feature spec file and branch from a short idea
-argument-hint: "[Short feature description, optional: 'figma: <component-link>']"
+argument-hint: "[Short feature description, optionally: 'figma: <component-link>']"
 allowed-tools: Read, Write, Glob, Bash(git switch:*)
 ---
 
@@ -15,7 +15,6 @@ Your job will be to turn the user input above into:
 - A human friendly feature title in kebab-case (e.g. new-heist-form)
 - A safe git branch name not already taken (e.g. claude/feature/new-heist-form)
 - A detailed markdown spec file under the \_specs/ directory
-- An optional figma design note, if a figma desgin link is present
 
 Then save the spec file to disk and print a short summary of what you did.
 
@@ -61,18 +60,19 @@ If you cannot infer a sensible `feature_title` and `feature_slug`, ask the user 
 
 If `figma_hint` is present and Figma MCP tools are available:
 
-1. Use the Figma MCP tools to locate the component, layer or frame.
-2. Extract only information that is useful for implementation, such as:
+Use the **figma-design-extractor** subagent to provide a design guide for the feature, citing the `figma hint` and tell it to:
+
+1. Extract only information that is useful for implementation, such as:
    - Dimensions and layout (grid, spacing, alignment)
    - Key typography tokens (font family, size, weight)
    - Color tokens and semantic usage (primary, surface, border, error etc.)
    - Border radius, shadows, and any notable visual detail
    - Icons, buttons, links or other UI elements
-3. Summarise this as 3 to 8 concise bullet points and also leave a link to the figma component for future lookups.
-4. If lookup fails or the tools are not available, record a note like:
+2. Summarise this as 3 to 8 concise bullet points and also leave a link to the figma component for future lookups.
+3. If lookup fails or the tools are not available, record a note like:
    - `"Design reference could not be retrieved. See Figma manually for details."`
 
-Alwyas summarise into human friendly notes.
+Always summarise into human friendly notes.
 
 ## Step 3. Switch to a new Git branch
 
